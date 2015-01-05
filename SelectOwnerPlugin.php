@@ -1,6 +1,6 @@
 <?php
 /**
- * Select Owner
+ * Omeka Select Owner Plugin
  *
  * @author John Kloor <kloor@bgsu.edu>
  * @copyright 2015 Bowling Green State University Libraries
@@ -8,7 +8,7 @@
  */
 
 /**
- * Select Owner plugin class.
+ * Omeka Select Owner Plugin: Plugin Class
  *
  * @package SelectOwner
  */
