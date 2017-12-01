@@ -93,8 +93,8 @@ class SelectOwnerPlugin extends Omeka_Plugin_AbstractPlugin
      * Add panel field when editing an item or collection in admin interface.
      *
      * The field will be labeled "Owner" and provide a select element named
-     * "owner_id" with all of the users from the User table, sorted by name.
-     * If the record already has an owner, that option will be selected.
+     * "select_owner_id" with all of the users from the User table, sorted by
+     * name. If the record already has an owner, that option will be selected.
      *
      * @param array $args Provides "record" and "view".
      */
@@ -106,12 +106,12 @@ class SelectOwnerPlugin extends Omeka_Plugin_AbstractPlugin
 
         print(
             '<div class="field">'.
-            '<label for="owner_id">'. __('Owner'). '</label>'.
+            '<label for="select_owner_id">'. __('Owner'). '</label>'.
             '<div class="inputs">'.
             $view->formSelect(
-                'owner_id',
+                'select_owner_id',
                 $owner ? $owner->id : null,
-                array('id' => 'owner_id'),
+                array('id' => 'select_owner_id'),
                 get_table_options('User', null, array('sort_field' => 'name'))
             ).
             '</div>'.
@@ -145,16 +145,16 @@ class SelectOwnerPlugin extends Omeka_Plugin_AbstractPlugin
     /**
      * Set the owner of an item or collection if submitted on a form.
      *
-     * If post data named "owner_id" is available, that ID will looked up in
-     * the User table. If the user is available, the records ownership will be
-     * changed to that user.
+     * If post data named "select_owner_id" is available, that ID will looked
+     * up in the User table. If the user is available, the records ownership
+     * will be changed to that user.
      *
      * @param array $args Provides "record".
      */
     private function _setOwner($args)
     {
-        if (!empty($args['post']['owner_id'])) {
-            $ownerId = $args['post']['owner_id'];
+        if (!empty($args['post']['select_owner_id'])) {
+            $ownerId = $args['post']['select_owner_id'];
             $owner = $this->_db->getTable('User')->find($ownerId);
 
             if ($owner) {
