@@ -18,6 +18,7 @@ class SelectOwnerPlugin extends Omeka_Plugin_AbstractPlugin
      * @var array Plugin hooks.
      */
     protected $_hooks = array(
+        'define_acl',
         'admin_items_panel_fields',
         'admin_items_show_sidebar',
         'before_save_item',
@@ -25,6 +26,19 @@ class SelectOwnerPlugin extends Omeka_Plugin_AbstractPlugin
         'admin_collections_show_sidebar',
         'before_save_collection'
     );
+
+    /**
+     * Hook to define ACL.
+     *
+     * @param array $args Provides "acl".
+     */
+    public function hookDefineAcl($args)
+    {
+        $acl = $args['acl'];
+
+        // Allow users to search for items by user.
+        $acl->allow(null, 'Users', 'browse');
+    }
 
     /**
      * Hook to panel fields for editing an item in the admin interface.
